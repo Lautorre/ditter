@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-12">
+        
+        {% if app.user %}
+            <h2>Bienvenue {{ app.user.pseudo }} !</h2>
+            {{ form_start(form) }}
+            {{ form_row(form.content)}}
+            <button class="btn btn-sm float-left btn-primary">Dittez !</button>
+        {{ form_end(form) }}
+        {% endif %}
+        
+
+        </div>
+
+        <div class="col-9 mt-3">
+
+    {% for deet in deets %}
+            <div class="example-wrapper">
+            
+            <div class="card text-white bg-primary mb-3" style="max-width: 100rem;">
+        
+            <div class="card-header">
+                <img src="" class="icon" alt="icone">
+            </div>
+
+            <div class="card-body">
+                <p class="card-text"><br> {{ deet.content }}</p>
+                <p>{{ deet.createdAt | date ('d/m/Y à H:i:s') }}</p>
+            </div>
+        
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
